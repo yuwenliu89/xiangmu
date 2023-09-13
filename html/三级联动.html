@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="../../jquery-3.7.0.min.js"></script>
+    <script src="city.js"></script>
+  </head>
+  <body>
+    <select id="sheng"></select>
+    <select id="shi">
+      <option value="">请选择市</option>
+    </select>
+    <select id="xian">
+      <option value="">请选择县</option>
+    </select>
+    <script>
+      let arr = citys;
+      let shi = null;
+      $(function () {
+        fun();
+      });
+      function fun() {
+        let str = `<option value="">请选择省</option> `;
+        arr.forEach((item, index) => {
+          str += `
+           <option value="${index}">${item.name}</option>
+           `;
+        });
+        $("#sheng").html(str);
+      }
+      $("#sheng").change(function () {
+        let index = $("#sheng").val();
+        let str = `<option value="">请选择市</option> `;
+        shi = arr[index].city;
+        arr[index].city.forEach((item, index) => {
+          str += `
+           <option value="${index}">${item.name}</option>
+           `;
+        });
+        $("#shi").html(str);
+        $("#xian").html(`<option value="">请选择县</option>`);
+      });
+      $("#shi").change(function () {
+        let index = $("#shi").val();
+        let str = `<option value="">请选择县</option> `;
+        shi[index].area.forEach((item, index) => {
+          str += `
+           <option value="${index}">${item}</option>
+           `;
+        });
+        $("#xian").html(str);
+      });
+    </script>
+  </body>
+</html>

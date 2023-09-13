@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <style>
+      ::-webkit-scrollbar {
+        display: none;
+      }
+      .box {
+        width: 400px;
+        border: 1px solid black;
+        margin: auto;
+        height: 450px;
+      }
+      .box h1 {
+        width: 400px;
+        height: 40px;
+        text-align: center;
+        margin: 10px 0;
+      }
+      .nav {
+        width: 400px;
+        height: 60px;
+        border-bottom: 1px solid #ccc;
+      }
+      .nav .yi {
+        width: 25px;
+        height: 25px;
+        margin-top: 17.5px;
+        margin-left: 5px;
+        float: left;
+      }
+      #add {
+        width: 320px;
+        height: 30px;
+        margin-top: 15px;
+        margin-left: 15px;
+        font-size: 18px;
+      }
+      #jia {
+        width: 100%;
+        height: 290px;
+        overflow-y: scroll;
+      }
+      #jia p {
+        width: 100%;
+        height: 40px;
+        border-bottom: 1px solid #ddd;
+        margin: 0;
+      }
+      #jia p input {
+        width: 20px;
+        height: 20px;
+        margin-top: 10px;
+        margin-left: 10px;
+        float: left;
+      }
+      #jia p span {
+        text-indent: 1em;
+        height: 40px;
+        float: left;
+        line-height: 40px;
+        font-size: 25px;
+      }
+      #jia p .a {
+        float: right;
+        margin-right: 15px;
+        color: #ccc;
+        display: none;
+      }
+      #wei {
+        width: 92px;
+        height: 38px;
+        border: none;
+        font-size: 15px;
+        margin-left: 4px;
+      }
+      #wei:hover {
+        border: 0.5px solid red;
+        border-radius: 5px;
+      }
+      #sou {
+        width: 60px;
+        height: 38px;
+        border: none;
+        font-size: 15px;
+      }
+      #sou:hover {
+        border: 0.5px solid red;
+        border-radius: 5px;
+      }
+      #cheng {
+        width: 60px;
+        height: 38px;
+        border: none;
+        font-size: 15px;
+      }
+      #cheng:hover {
+        border: 0.5px solid red;
+        border-radius: 5px;
+      }
+      #yi {
+        width: 70px;
+        height: 38px;
+        border: none;
+        font-size: 15px;
+      }
+      #yi:hover {
+        border: 0.5px solid red;
+        border-radius: 5px;
+      }
+      #qing {
+        width: 92px;
+        height: 38px;
+        border: none;
+        font-size: 15px;
+      }
+      #qing:hover {
+        border: 0.5px solid red;
+        border-radius: 5px;
+      }
+      .an {
+        text-decoration: line-through;
+        color: #ccc;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box">
+      <h1>备忘录</h1>
+      <div class="nav">
+        <input type="checkbox" class="yi" id="all" />
+        <input type="text" placeholder="请输入你想干的事" id="add" />
+      </div>
+      <div id="jia"></div>
+      <button id="wei"><span>0</span>个未完成</button>
+      <button id="sou">所有</button>
+      <button id="cheng">未完成</button>
+      <button id="yi">已完成</button>
+      <button id="qing">清除已完成</button>
+    </div>
+    <script>
+      let arr = [];
+      let indexs = null;
+      $(function () {
+        $("#add").on("keyup", tianJia);
+        let an = localStorage.getItem("arr");
+        if (an != null) {
+          arr = JSON.parse(an);
+          xuanRan();
+        }
+        $("#sou").click(suoYou);
+        $("#cheng").click(weiWan);
+        $("#yi").click(yiWan);
+        $("#qing").click(qingChu);
+      });
+      // 清除已完成
+      function qingChu() {
+        arr = arr.filter((item, index) => item.zt != true);
+        localStorage.setItem("arr", JSON.stringify(arr));
+        xuanRan();
+      }
+      // 已完成
+      function yiWan() {
+        let an = arr.filter((item, index) => item.zt == true);
+        xuanRan(an);
+      }
+      // 未完成
+      function weiWan() {
+        let an = arr.filter((item, index) => item.zt == false);
+        xuanRan(an);
+      }
+      // 所有
+      function suoYou() {
+        xuanRan();
+      }
+      // 删除状态true
+      function shan() {
+        let index = $(event.target).data("index");
+        if (event.target.innerHTML === "X") {
+          arr.splice(index, 1);
+          localStorage.setItem("arr", JSON.stringify(arr));
+          xuanRan();
+        }
+      }
+      // 鼠标滑过事件
+      function yiShang() {
+        $(this).find(".a").show();
+        $(this).siblings().find(".a").hide();
+      }
+      // 添加事件
+      function tianJia() {
+        if (event.key == "Enter") {
+          if ($(this).val() != "") {
+            let obj = {
+              name: $(this).val(),
+              zt: false,
+            };
+            arr.push(obj);
+            xuanRan();
+            localStorage.setItem("arr", JSON.stringify(arr));
+            $(this).val("");
+          }
+        }
+      }
+      // 渲染列表
+      function xuanRan(data = arr) {
+        if (data.length === 0) {
+          $("#jia").html("");
+          return;
+        }
+        let str = ``;
+        data.forEach((item, index) => {
+          str += `
+                    <p>
+                    <input type="checkbox"name="tas" data-index="${index}" ${
+            item.zt ? "checked" : ""
+          }/>
+                    <span class=${item.zt ? "an" : ""} >${item.name}</span>
+                    <span class="a" data-index="${index}">X</span>
+                    </p>
+                `;
+        });
+        $("#jia").html(str);
+        $("#jia p").on("mouseover", yiShang);
+        $("#jia span").click(shan);
+        $("#all").change(allX);
+        $("#jia").on("click", "input", xuanZhe);
+        shu();
+      }
+      // input 全选事件
+      function xuanZhe() {
+        let index = $(event.target).data("index");
+        let allChecked =
+          $("#jia input:checked").length === $("#jia input").length;
+        $("#all").prop("checked", allChecked);
+        arr[index].zt = $(this).prop("checked");
+        indexs = index;
+        shu();
+        fun();
+      }
+      function fun() {
+        localStorage.setItem("arr", JSON.stringify(arr));
+        xuanRan();
+      }
+      // all点击它实现全部选中
+      function allX() {
+        let isChecked = $(this).prop("checked");
+        console.log(isChecked);
+        arr.filter((item, index) => {
+          return (item.zt = isChecked);
+        });
+        shu();
+        fun();
+      }
+      function shu() {
+        let num = 0;
+        sun = arr.forEach((item) => {
+          if (item.zt == false) {
+            num++;
+          }
+        });
+        $("#wei span").html(num);
+      }
+    </script>
+  </body>
+</html>

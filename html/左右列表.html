@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="../../jquery-3.7.0.min.js"></script>
+    <style>
+      .box {
+        width: 500px;
+        height: 300px;
+        margin: auto;
+      }
+      #left {
+        width: 150px;
+        height: 300px;
+        float: left;
+      }
+      #right {
+        width: 150px;
+        height: 300px;
+        float: left;
+      }
+      button {
+        float: left;
+        width: 60px;
+        height: 25px;
+        margin-top: 120px;
+        margin-left: 10px;
+        margin-right: 10px;
+      }
+      option {
+        margin-top: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box">
+      <select name="" id="left" size="20"></select>
+      <button id="gou">></button>
+      <button id="qu"><</button>
+      <select name="" id="right" size="20"></select>
+    </div>
+    <script>
+      let left = ["李艳阳", "刘振周", "余浩", "杨洪承", "李洋洋"];
+      let right = ["刘老师", "史老师", "郑老师", "邓老师", "新的老师"];
+      $(function () {
+        fun();
+        fun1();
+      });
+      $("#qu").click(function () {
+        if ($("#right").val() != null) {
+          let val = $("#right").val();
+          let an = right.indexOf(val);
+          left.push(val);
+          right.splice(an, 1);
+          fun1();
+          fun();
+        } else {
+          alert("请选择名字");
+        }
+      });
+      $("#gou").click(function () {
+        if ($("#left").val() != null) {
+          let val = $("#left").val();
+          let an = left.indexOf(val);
+          right.push(val);
+          left.splice(an, 1);
+          fun1();
+          fun();
+        } else {
+          alert("请选择名字");
+        }
+      });
+      function fun() {
+        let str = ``;
+        left.forEach((item, index) => {
+          str += `<option value="${item}" data-index="${index}">${item}</option> `;
+        });
+        $("#left").html(str);
+      }
+      function fun1() {
+        let str = ``;
+        right.forEach((item, index) => {
+          str += `<option value="${item}"data-index="${index}">${item}</option> `;
+        });
+        $("#right").html(str);
+      }
+    </script>
+  </body>
+</html>

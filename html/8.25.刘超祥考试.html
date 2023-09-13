@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        position: relative;
+      }
+      .box {
+        width: 600px;
+        height: 520px;
+        border: 1px solid black;
+        margin: auto;
+      }
+
+      .box div {
+        width: 100%;
+        height: 60px;
+        text-indent: 2em;
+        line-height: 60px;
+      }
+      .box .a input {
+        width: 260px;
+        height: 26px;
+      }
+      .box .b input {
+        width: 18px;
+        height: 18px;
+      }
+      .c {
+        width: 80px;
+        height: 36px;
+        float: right;
+        margin-right: 80px;
+      }
+      table {
+        width: 1400px;
+        margin: auto;
+        margin-top: 40px;
+      }
+      td {
+        height: 40px;
+        text-align: center;
+      }
+      td button {
+        width: 55px;
+        height: 25px;
+      }
+      p {
+        width: 60px;
+        height: 29px;
+        border: 1px solid black;
+        float: left;
+        margin: 0;
+        margin-top: 15px;
+        line-height: 29px;
+        text-align: center;
+        text-indent: 0;
+      }
+      .box .e {
+        width: 230px;
+        height: 60px;
+        float: right;
+      }
+      .e button {
+        width: 120px;
+        height: 30px;
+        float: right;
+        margin-top: 15px;
+        margin-right: 10px;
+      }
+      .an {
+        background-color: purple;
+      }
+      .f {
+        width: 180px;
+      }
+      .box1 {
+        width: 600px;
+        height: 520px;
+        border: 1px solid black;
+        background-color: white;
+        margin: auto;
+        position: absolute;
+        top: 0px;
+        left: 33.6%;
+      }
+      .box1 .e {
+        width: 230px;
+        height: 60px;
+        float: right;
+      }
+      .box1 div {
+        width: 100%;
+        height: 60px;
+        text-indent: 2em;
+        line-height: 60px;
+      }
+      .box1 .a input {
+        width: 260px;
+        height: 26px;
+      }
+      .box1 .b input {
+        width: 18px;
+        height: 18px;
+      }
+      .ts {
+        width: 100%;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.5);
+        position: absolute;
+        top: 0px;
+        display: none;
+      }
+      .ans {
+        margin-top: 50px;
+        margin-left: 120px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box">
+      <div class="a">姓名：<input type="text" id="inp1" /><span></span></div>
+      <div class="a">手机号：<input type="text" id="inp2" /><span></span></div>
+      <div class="a">年龄：<input type="text" id="inp3" /><span></span></div>
+      <div class="b">
+        性别：
+        <input type="radio" name="sex" value="男" checked />男
+        <input type="radio" name="sex" value="女" />女
+      </div>
+      <br />
+      <div class="b">
+        爱好:
+        <input type="checkbox" value="打游戏" name="box" />打游戏
+        <input type="checkbox" value="唱歌" name="box" />唱歌
+        <input type="checkbox" value="打篮球" name="box" />打篮球
+        <input type="checkbox" value="跑步" name="box" />跑步
+        <input type="checkbox" value="睡觉" name="box" />睡觉
+      </div>
+      <br />
+      <div>
+        地址：
+        <select name="" id="inp4">
+          <option value="">请选择市区</option>
+        </select>
+        <select name="" id="inp5">
+          <option value="">请选择地区</option>
+        </select>
+      </div>
+      <div class="a">
+        验证码：<input type="text" id="inp6"/ >
+        <div class="e">
+          <button class="d">点击切换验证码</button>
+          <p></p>
+        </div>
+      </div>
+      <button class="c" id="ti">提交</button>
+      <br />
+    </div>
+    <div>
+      <table border="1px" cellspacing="0px">
+        <thead>
+          <tr>
+            <th>全选<input type="checkbox" name="" id="all" /></th>
+            <th>id</th>
+            <th>姓名</th>
+            <th>手机号</th>
+            <th>年龄</th>
+            <th>性别</th>
+            <th>爱好</th>
+            <th>地址</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    <div class="ts">
+      <div class="box1">
+        <div class="a">姓名：<input type="text" /><span></span></div>
+        <div class="a">手机号：<input type="text" /><span></span></div>
+        <div class="a">年龄：<input type="text" /><span></span></div>
+        <div class="b">
+          性别：
+          <input type="radio" value="男" name="shi" />男
+          <input type="radio" value="女" name="shi" />女
+        </div>
+        <br />
+        <div class="b">
+          爱好:
+          <input type="checkbox" value="打游戏" />打游戏
+          <input type="checkbox" value="唱歌" />唱歌
+          <input type="checkbox" value="打篮球" />打篮球
+          <input type="checkbox" value="跑步" />跑步
+          <input type="checkbox" value="睡觉" />睡觉
+        </div>
+        <br />
+        <div>
+          地址：
+          <select name="">
+            <option value="">请选择市区</option>
+          </select>
+          <select name="">
+            <option value="">请选择地区</option>
+          </select>
+        </div>
+        <button class="ans" id="que">确定修改</button>&emsp;&emsp;
+        <button class="ans" id="qi">取消修改</button>
+        <br />
+      </div>
+    </div>
+    <script>
+      let arr = [
+        {
+          id: 1,
+          name: "张三",
+          sj: 123456798101,
+          age: 18,
+          sex: "男",
+          aih: ["1", "2", "3"],
+          dz: ["北京", "朝阳"],
+          zt: false,
+        },
+      ];
+      var data = [
+        {
+          name: "北京市",
+          date: ["东城区", "西城区", "朝阳区", "丰台区", "石景山区"],
+        },
+        {
+          name: "郑州市",
+          date: ["中原区", "金水区", "二七区", "管城回族区", "上街区"],
+        },
+      ];
+      let tbody = document.querySelector("tbody");
+      let ti = document.getElementById("ti");
+      let inp1 = document.getElementById("inp1");
+      let inp2 = document.getElementById("inp2");
+      let inp3 = document.getElementById("inp3");
+      let inp4 = document.getElementById("inp4");
+      let inp5 = document.getElementById("inp5");
+      let inp6 = document.getElementById("inp6");
+      let box = document.getElementsByName("box");
+      let sex = document.getElementsByName("sex");
+      let span = document.querySelectorAll("span");
+      let ps = document.querySelector("p");
+      let but = document.querySelector(".d");
+      let all = document.getElementById("all");
+      let ts = document.querySelector(".ts");
+      let qi = document.querySelector("#qi");
+      let que = document.getElementById("que");
+      let xb = null;
+      window.addEventListener("load", function () {
+        xuanRan();
+        xuanRan1();
+        shiQu();
+        ti.addEventListener("click", tiJiao);
+        inp4.addEventListener("change", gaiBan);
+        but.addEventListener("click", huan);
+        ps.innerHTML = sui(1000, 9999);
+        tbody.addEventListener("click", shiJian);
+        all.addEventListener("change", allFun);
+        qi.addEventListener("click", fun4);
+        que.addEventListener("click", huiXian);
+      });
+      function huiXian() {
+        let index = event.target.getAttribute("index");
+        let an = document.querySelectorAll(".box1 input");
+        console.log(arr[xb]);
+        arr[xb].name = an[0].value;
+        arr[xb].sj = an[1].value;
+        arr[xb].age = an[2].value;
+        if (an[3].checked == true || an[4].checked) {
+          arr[xb].sex = an[3].value ? an[4].value : null;
+        }
+        xuanRan();
+        ts.style.display = "none";
+      }
+      function fun4() {
+        ts.style.display = "none";
+      }
+      function allFun() {
+        let an = tbody.querySelectorAll("input");
+        an.forEach((item) => {
+          item.checked = this.checked;
+        });
+        arr.forEach((item, index) => {
+          item.zt = this.checked;
+        });
+      }
+      // tbody点击事件
+      function shiJian() {
+        let an = event.target;
+        if (an.tagName == "BUTTON" && an.innerHTML === "删除") {
+          if (confirm("您确定要删除吗？")) {
+            let index = an.dataset.index;
+            arr.splice(index, 1);
+            fun();
+          }
+        }
+        if (
+          an.tagName == "BUTTON" &&
+          an.innerHTML === "把该用户设置为重点用户"
+        ) {
+          fun();
+        }
+        if (an.tagName == "INPUT") {
+          let index = event.target.getAttribute("index");
+          arr[index].zt = event.target.checked;
+          fun();
+        }
+        if (an.tagName == "BUTTON" && an.innerHTML === "编辑") {
+          ts.style.display = "block";
+          let an = document.querySelectorAll(".box1 input");
+          let index = event.target.dataset.index;
+          an[0].value = arr[index].name;
+          an[1].value = arr[index].sj;
+          an[2].value = arr[index].age;
+          if (arr[index].sex == an[3].value) {
+            an[3].checked = true;
+          }
+          xb = index;
+        }
+        xuanRan();
+      }
+      // 全选反选
+      function fun() {
+        let tbodys = document.querySelectorAll("tbody input");
+
+        tbodys = [...tbodys];
+        console.log(tbodys);
+        all.checked = tbodys.every((item) => item.checked);
+        /* let index = event.target.dataset.index;
+        let tr = document.querySelectorAll("tbody tr");
+        tr[index].classList.add("an"); */
+      }
+      // 点击切换随机数
+      function huan() {
+        ps.innerHTML = sui(1000, 9999);
+      }
+      // 表单正则
+      function shiQu() {
+        inp1.addEventListener("blur", function () {
+          var rgb = /^[\u4e00-\u9fa5]+$/;
+          if (rgb.test(inp1.value) == true) {
+            span[0].innerHTML = "&emsp;输入正确";
+            span[0].style.color = "green";
+          } else {
+            span[0].innerHTML = "&emsp;请输入正确的汉字";
+            span[0].style.color = "red";
+          }
+        });
+        inp2.addEventListener("blur", function () {
+          var rgb = /^1\d{10}$/;
+          if (rgb.test(inp2.value) == true) {
+            span[1].innerHTML = "&emsp;输入正确";
+            span[1].style.color = "green";
+          } else {
+            span[1].innerHTML = "&emsp;请输入正确的手机号";
+            span[1].style.color = "red";
+          }
+        });
+        inp3.addEventListener("blur", function () {
+          var rgb = /^([1-9]|[1-9][0-9])$/;
+          if (rgb.test(inp3.value) == true) {
+            span[2].innerHTML = "&emsp;输入正确";
+            span[2].style.color = "green";
+          } else {
+            span[2].innerHTML = "&emsp;请输入正确的年龄";
+            span[2].style.color = "red";
+          }
+        });
+        inp6.addEventListener("blur", function () {
+          if (this.value === ps.innerHTML) {
+            xuanRan();
+          } else {
+            dingShi();
+          }
+        });
+      }
+      // 定时器
+      function dingShi() {
+        let an = 10;
+        let tian = setInterval(() => {
+          an--;
+          ps.innerHTML = an;
+          if (an <= 0) {
+            ps.innerHTML = sui(1000, 9999);
+            clearInterval(tian);
+          }
+        }, 1000);
+      }
+      // 获取二级联动的下标
+      function gaiBan() {
+        let sel = document.querySelector("select option[index]");
+        let index = sel.index;
+        let str = "<option value=''>请选择地区</option>";
+        if (index != "") {
+          data[index].date.forEach((item, index) => {
+            str += `
+          <option value="${item}">${item}</option>
+          `;
+          });
+          inp5.innerHTML = str;
+        } else {
+          inp5.innerHTML = str;
+        }
+      }
+      // 二级联动渲染
+      function xuanRan1() {
+        let str = "<option value=''>请选择城市</option>";
+        data.forEach((item, index) => {
+          str += `
+            <option value="${item.name}" index="${index}">${item.name}</option>
+            `;
+        });
+        inp4.innerHTML = str;
+      }
+      //添加
+      function tiJiao() {
+        if (inp1.value != "") {
+          if (inp2.value != "") {
+            if (inp3.value != "") {
+              if (sex[0].value != "" && sex[1].value != "") {
+                let liu = [];
+                box.forEach((item, index) => {
+                  if (item.checked == true && item.checked <= 2) {
+                    return liu.push(item.value);
+                  }
+                });
+                if (liu.length >= 2) {
+                  console.log(inp5.value, inp6.value);
+                  if (inp4.value != "" && inp5.value != "") {
+                    if (inp6.value === ps.innerHTML) {
+                      let an = null;
+                      sex.forEach((item) => {
+                        item.checked;
+                        if (item.checked == true) {
+                          return (an = item.value);
+                        }
+                      });
+                      let ts = [];
+                      box.forEach((item, index) => {
+                        if (item.checked == true) {
+                          return ts.push(item.value);
+                        }
+                      });
+                      let obj = {
+                        id: arr.length + 1,
+                        name: inp1.value,
+                        sj: inp2.value,
+                        age: inp3.value,
+                        sex: an,
+                        aih: ts,
+                        dz: [inp4.value, inp5.value],
+                        zt: false,
+                      };
+
+                      arr.push(obj);
+                      xuanRan();
+                      fun();
+                    }
+                  } else {
+                    alert("请选择正确的地区");
+                  }
+                } else {
+                  alert("不能低于两个爱好");
+                }
+              } else {
+                alert("性别不能不选");
+              }
+            } else {
+              alert("年龄不能为空");
+            }
+          } else {
+            alert("手机号不能为空");
+          }
+        } else {
+          alert("名字不能为空");
+        }
+      }
+      // 渲染
+      function xuanRan() {
+        let str = ``;
+        arr.forEach((item, index) => {
+          str += `
+          <tr data-index="${index}">
+            <td><input type ="checkbox" index="${index}"></td>
+            <td>${item.id}</td>
+            <td>${item.name}</td>
+            <td>${item.sj}</td>
+            <td>${item.age}</td>
+            <td>${item.sex}</td>
+            <td>${item.aih}</td>
+            <td>${item.dz}</td>
+            <td><button data-index="${index}">删除</button>&emsp;<button data-index="${index}">编辑</button>&emsp;<button data-index="${index}" class="f">把该用户设置为重点用户</button></td>
+          </tr$>
+            `;
+        });
+        tbody.innerHTML = str;
+      }
+      function sui(max, min) {
+        return Math.floor(Math.random() * (max - min + 1) + min);
+      }
+    </script>
+  </body>
+</html>

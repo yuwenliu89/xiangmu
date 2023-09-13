@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="../jquery-3.7.0.min.js"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      .box {
+        width: 100%;
+        height: 51.3vw;
+      }
+      .nav {
+        width: 10%;
+        height: 100%;
+        background-color: rgba(68, 79, 99);
+        border-radius: 10px 0 0 10px;
+        float: left;
+      }
+      .nav .a {
+        width: 100%;
+        height: 60px;
+        background-color: rgba(0, 181, 249);
+        border-radius: 10px 0 0 0;
+      }
+      .nav .a img {
+        width: 90%;
+        height: 25px;
+        margin-top: 17.5px;
+        margin-left: 5%;
+      }
+      .nav ul {
+        width: 100%;
+        margin: 0;
+        float: left;
+      }
+      .nav ul li {
+        width: 97%;
+        height: 50px;
+        list-style: none;
+        line-height: 50px;
+      }
+      .nav ul li img {
+        width: 25px;
+        height: 25px;
+        float: left;
+        margin-top: 12.5px;
+        margin-left: 10px;
+      }
+      .nav ul li span {
+        width: 50%;
+        height: 50px;
+        float: left;
+        margin-left: 10px;
+      }
+      .nav ul li:hover {
+        border-left: 4px solid rgba(16, 160, 216);
+        background-color: rgba(78, 84, 101);
+      }
+      .header {
+        width: 90%;
+        height: 60px;
+        float: left;
+        border-bottom: 0.2px solid #ddd;
+      }
+      .header p {
+        width: 80px;
+        height: 40px;
+        margin-top: 10px;
+        float: left;
+      }
+      .header p img {
+        width: 30px;
+        height: 30px;
+        margin-left: 25px;
+        margin-top: 5px;
+      }
+      .header div {
+        float: right;
+      }
+      .header div .a {
+        width: 60px;
+        height: 60px;
+        float: left;
+        border-left: 0.2px solid #ddd;
+        border-right: 0.2px solid #ddd;
+      }
+      .header div .a img {
+        width: 30px;
+        height: 30px;
+        margin-top: 15px;
+        margin-left: 15px;
+      }
+      .header div .b {
+        width: 110px;
+        height: 60px;
+        float: left;
+        text-align: center;
+        line-height: 60px;
+        color: #c2c2c2;
+        border-right: 0.2px solid #ddd;
+      }
+      .header div .c {
+        width: 50px;
+        height: 60px;
+        text-align: center;
+        line-height: 60px;
+        float: left;
+        color: #c2c2c2;
+      }
+      .subnav {
+        width: 90%;
+        height: 50px;
+        float: left;
+        border-bottom: 0.2px solid #ddd;
+      }
+      .subnav ul {
+        width: 100%;
+        height: 50px;
+      }
+      .subnav ul li {
+        width: 110px;
+        height: 50px;
+        text-align: center;
+        line-height: 50px;
+        list-style: none;
+        float: left;
+      }
+
+      .subnav ul li span {
+        width: 20px;
+        height: 20px;
+        color: #ddd;
+        border: none;
+        margin-left: 3px;
+        float: right;
+        margin-top: 15px;
+        line-height: 20px;
+      }
+      .subnav ul li span:hover {
+        background-color: red;
+        color: white;
+      }
+      .content {
+        width: 90%;
+        height: 45.3vw;
+        float: left;
+      }
+      .main {
+        width: 99.7%;
+        height: 98%;
+        float: left;
+        margin-top: 13px;
+        border: none;
+      }
+      body div .an {
+        width: 100%;
+        background-color: rgba(78, 165, 220) !important;
+        color: white;
+      }
+      body div .ta {
+        color: rgba(16, 160, 216);
+        border-bottom: 4px solid rgba(16, 160, 216);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box">
+      <div class="nav">
+        <div class="a">
+          <img src="./img/logo.png" alt="" />
+        </div>
+        <ul id="jia">
+          <li><img src="./img/快捷菜单.png" alt="" /><span>菜单管理</span></li>
+          <li>
+            <img src="./img/文本，书页.png" alt="" /><span>内容管理</span>
+          </li>
+          <li>
+            <img src="./img/263资源、管理.png" alt="" /><span>推荐位管理</span>
+          </li>
+          <li><img src="./img/链接.png" alt="" /><span>友情链接</span></li>
+          <li><img src="./img/锁.png" alt="" /><span>RBAC</span></li>
+          <li><img src="./img/邮箱.png" alt="" /><span>邮件系统</span></li>
+          <li><img src="./img/循环.png" alt="" /><span>生成静态</span></li>
+          <li><img src="./img/钱币.png" alt="" /><span>备份管理</span></li>
+          <li><img src="./img/用户.png" alt="" /><span>个人信息</span></li>
+          <li><img src="./img/设置.png" alt="" /><span>系统设置</span></li>
+        </ul>
+      </div>
+      <div class="header">
+        <p><img src="./img/栏目.png" alt="" /></p>
+        <div>
+          <span class="a"><img src="./img/邮箱.png" alt="" /></span>
+          <span class="b">超级管理员</span>
+          <span class="c">退出</span>
+        </div>
+      </div>
+      <div class="subnav">
+        <ul id="ru"></ul>
+      </div>
+      <div class="content">
+        <iframe src="./html/8.25.刘超祥考试.html" class="main"></iframe>
+      </div>
+    </div>
+    <script>
+      $(function () {
+        $("#jia li").click(tianJia);
+        $("#ru").append(`<li>菜单管理</li>`);
+        $("#ru").on("click", "li", shiJian);
+      });
+      function tianJia() {
+        // $("#ru li").click(shiJian);
+        let an = $(this).text().trim();
+        let re = $("#ru li:eq(0)").text().trim();
+        let ta = $("#ru li").text().trim().split("X") + re;
+        if (!ta.includes(an)) {
+          if (!ta.includes(an)) {
+            $("#ru").append(`<li class="ta">${an}<span>X</span></li>`);
+          }
+        }
+        ta = ta;
+        let ts = $("#jia li");
+        let res = $("#ru li");
+        [...res].forEach((item, index) => {
+          $("#ru li").removeClass("ta");
+          if (index == res.length - 1) {
+            $("#ru li:last").addClass("ta");
+          }
+        });
+        ts.removeClass("an");
+        switch (an) {
+          case "菜单管理":
+            $(".content").html(
+              `<iframe src="./html/8.25.刘超祥考试.html" class="main"></iframe>`
+            );
+            $(this).addClass("an");
+            break;
+          case "内容管理":
+            $(".content").html(
+              `<iframe src="./html/9.1.刘超祥考试.html" class="main"></iframe>`
+            );
+            $(this).addClass("an");
+            break;
+          case "系统设置":
+            $(".content").html(
+              `<iframe src="./html/9.8刘超祥考试.html" class="main"></iframe>`
+            );
+            $(this).addClass("an");
+            break;
+          case "推荐位管理":
+            $(".content").html(
+              `<iframe src="./html/表格增删改查.html" class="main"></iframe>`
+            );
+            $(this).addClass("an");
+            break;
+          case "友情链接":
+            $(".content").html(
+              `<iframe src="./html/购物车1.html" class="main"></iframe>`
+            );
+            $(this).addClass("an");
+            break;
+          case "RBAC":
+            $(".content").html(
+              `<iframe src="./html/考试题1.html" class="main"></iframe>`
+            );
+            $(this).addClass("an");
+            break;
+          case "邮件系统":
+            $(".content").html(
+              `<iframe src="./html/三级联动.html" class="main"></iframe>`
+            );
+            $(this).addClass("an");
+            break;
+          case "生成静态":
+            $(".content").html(
+              `<iframe src="./html/商品.html" class="main"></iframe>`
+            );
+            $(this).addClass("an");
+            break;
+          case "备份管理":
+            $(".content").html(
+              `<iframe src="./html/ajax.html" class="main"></iframe>`
+            );
+            $(this).addClass("an");
+            break;
+          case "个人信息":
+            $(".content").html(
+              `<iframe src="./html/左右列表.html" class="main"></iframe>`
+            );
+            $(this).addClass("an");
+            break;
+        }
+      }
+      function shiJian() {
+        let $li = $(this);
+        let $res = $("#ru li");
+
+        if ($li.hasClass("ta")) {
+          $li.removeClass("ta");
+        } else {
+          $res.removeClass("ta");
+          $li.addClass("ta");
+        }
+        if ($(event.target).is("span")) {
+          let $span = $(event.target);
+          let $parent = $span.parent();
+          $parent.remove();
+        }
+
+        let ta = $(this).not("X").text();
+        switch (ta) {
+          case "菜单管理":
+            $(".content").html(
+              `<iframe src="./html/8.25.刘超祥考试.html" class="main"></iframe>`
+            );
+            break;
+          case "内容管理X":
+            $(".content").html(
+              `<iframe src="./html/9.1.刘超祥考试.html" class="main"></iframe>`
+            );
+            break;
+          case "系统设置X":
+            $(".content").html(
+              `<iframe src="./html/9.8刘超祥考试.html" class="main"></iframe>`
+            );
+            break;
+          case "推荐位管理X":
+            $(".content").html(
+              `<iframe src="./html/表格增删改查.html" class="main"></iframe>`
+            );
+            break;
+          case "友情链接X":
+            $(".content").html(
+              `<iframe src="./html/购物车1.html" class="main"></iframe>`
+            );
+            break;
+          case "RBACX":
+            $(".content").html(
+              `<iframe src="./html/考试题1.html" class="main"></iframe>`
+            );
+            break;
+          case "邮件系统X":
+            $(".content").html(
+              `<iframe src="./html/三级联动.html" class="main"></iframe>`
+            );
+            break;
+          case "生成静态X":
+            $(".content").html(
+              `<iframe src="./html/商品.html" class="main"></iframe>`
+            );
+            break;
+          case "备份管理X":
+            $(".content").html(
+              `<iframe src="./html/ajax.html" class="main"></iframe>`
+            );
+            break;
+          case "个人信息X":
+            $(".content").html(
+              `<iframe src="./html/左右列表.html" class="main"></iframe>`
+            );
+            break;
+        }
+      }
+    </script>
+  </body>
+</html>

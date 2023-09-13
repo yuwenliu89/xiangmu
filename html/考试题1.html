@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      table {
+        border-collapse: collapse;
+        width: 100%;
+        max-width: 1000px; /* 控制表格宽度，根据需要进行调整 */
+        margin-bottom: 20px;
+        margin: 0 auto;
+      }
+      th,
+      td {
+        padding: 8px;
+        text-align: center;
+        border-bottom: 1px solid #ddd;
+      }
+      th {
+        background-color: #f2f2f2;
+        color: #333;
+        font-weight: bold;
+      }
+      tr:hover {
+        background-color: #f5f5f5;
+      }
+      button {
+        display: inline-block;
+        border-radius: 5px;
+        padding: 10px 20px;
+        font-size: 16px;
+        text-align: center;
+        text-decoration: none;
+        background-color: #4caf50;
+        color: #ffffff;
+        border: none;
+        transition: background-color 0.3s ease;
+        cursor: pointer;
+      }
+      button:hover {
+        background-color: #45a049;
+      }
+      .avatar {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background-size: cover;
+        background-position: center;
+      }
+      form {
+        width: 500px;
+      }
+      .form-group {
+        margin-bottom: 15px;
+      }
+      .form-group label {
+        font-weight: bold;
+      }
+      .form-group input,
+      .form-group select {
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        padding: 5px;
+      }
+      .form-group select {
+        width: 140px;
+        height: 30px;
+        height: auto;
+      }
+      .form-group .avatar {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        border: 1px solid #ccc;
+        margin-top: 10px;
+      }
+      span {
+        color: red;
+      }
+      #avatar {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <form>
+      <div class="form-group">
+        <label for="name">姓名:</label>
+        <input type="text" id="name" name="name" value="李四" />
+        <span></span>
+      </div>
+      <div class="form-group">
+        <label for="phone">手机号:</label>
+        <input type="tel" id="phone" name="phone" value="18833336666" />
+        <span></span>
+      </div>
+      <div class="form-group">
+        <label for="age">年龄:</label>
+        <input type="number" id="age" name="age" value="28" min="0" max="150" />
+        <span></span>
+      </div>
+      <div class="form-group">
+        <label>性别:</label>
+        <input type="radio" id="male" checked name="gender" value="1" />
+        <label for="male">男</label>
+        <input type="radio" id="female" name="gender" value="2" />
+        <label for="female">女</label>
+      </div>
+      <div class="form-group">
+        <label>爱好:</label>
+        <input type="checkbox" id="hobby1" name="likes" value="篮球" />
+        <label for="hobby1">篮球</label>
+        <input type="checkbox" id="hobby2" checked name="likes" value="跳舞" />
+        <label for="hobby2">跳舞</label>
+        <input type="checkbox" id="hobby3" name="likes" value="唱歌" />
+        <label for="hobby3">唱歌</label>
+        <input type="checkbox" id="hobby3" checked name="likes" value="电影" />
+        <label for="hobby3">电影</label>
+        <input type="checkbox" id="hobby3" checked name="likes" value="游戏" />
+        <label for="hobby3">游戏</label>
+        <span></span>
+      </div>
+      <div class="form-group">
+        <label for="address">地址:</label>
+        <select id="address1" name="address"></select>
+        <select id="address2" name="address">
+          <option value="">请选择小区</option>
+        </select>
+        <span></span>
+      </div>
+      <div class="form-group">
+        <label for="avatar">头像:</label>
+        <input type="file" id="avatar" name="avatar" accept="image/*" />
+        <div id="preview" class="avatar"></div>
+      </div>
+      <button type="submit" id="sub-btn">提交</button>
+    </form>
+
+    <table>
+      <thead>
+        <tr>
+          <th><input type="checkbox" id="checkall" /></th>
+          <th>头像</th>
+          <th>姓名</th>
+          <th>手机号</th>
+          <th>年龄</th>
+          <th>性别</th>
+          <th>爱好</th>
+          <th>地址</th>
+          <th>操作</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+    <button id="dels">批量删除</button>
+    <button id="stars">批量标星</button>
+    <script>
+      var persons = [];
+      var address = [
+        {
+          name: "网通大区",
+          code: 1001,
+          children: [
+            {
+              name: "德玛西亚",
+              code: 10012,
+            },
+            {
+              name: "比尔吉沃特",
+              code: 10011,
+            },
+            {
+              name: "无畏先锋",
+              code: 10014,
+            },
+          ],
+        },
+        {
+          name: "电信大区",
+          code: 1002,
+          children: [
+            {
+              name: "艾欧尼亚",
+              code: 10021,
+            },
+            {
+              name: "黑色玫瑰",
+              code: 10022,
+            },
+            {
+              name: "祖安",
+              code: 10023,
+            },
+          ],
+        },
+      ];
+      var tbodyEle = document.querySelector("tbody");
+      var formEle = document.querySelector("form");
+      var address1 = document.querySelector("#address1");
+      var address2 = document.querySelector("#address2");
+      var previewEle = document.querySelector("#preview");
+      var avatarEle = document.querySelector("#avatar");
+      var checkallEle = document.querySelector("#checkall");
+      var delsEle = document.querySelector("#dels");
+      var starsEle = document.querySelector("#stars");
+      var subbtnEle = document.querySelector("#sub-btn");
+      var imgSrc = "";
+      var editIndex = "";
+      function subFun() {
+        event.preventDefault();
+        var flag = true;
+        //检查姓名
+        var username = document.querySelector("#name");
+        var reg = /^[\u4e00-\u9fa5]+$/;
+        if (!reg.test(username.value)) {
+          username.nextElementSibling.innerHTML = "姓名不符合规则";
+          flag = false;
+        } else {
+          username.nextElementSibling.innerHTML = "";
+        }
+        //检查手机号
+        var phone = document.querySelector("#phone");
+        var reg = /^1\d{10}$/;
+        if (!reg.test(phone.value)) {
+          phone.nextElementSibling.innerHTML = "手机号不符合规则";
+          flag = false;
+        } else {
+          phone.nextElementSibling.innerHTML = "";
+        }
+        //检查爱好
+        var likes = document.querySelectorAll("[name='likes']:checked");
+        var likes_spanEle =
+          document.querySelector("[name='likes']").parentElement
+            .lastElementChild;
+        if (likes.length < 2) {
+          flag = false;
+          likes_spanEle.innerHTML = "最少选2个爱好";
+        } else {
+          likes_spanEle.innerHTML = "";
+        }
+        //检查地址
+        if (!address1.value || !address2.value) {
+          flag = false;
+          address2.nextElementSibling.innerHTML = "选择地址";
+        } else {
+          address2.nextElementSibling.innerHTML = "";
+        }
+        if (!flag) {
+          return false;
+        }
+        //开始添加用户
+        var age = document.querySelector("#age").value;
+        var sex = document.querySelector('[name="gender"]:checked').value;
+        var likes = [...likes].map((item) => {
+          return item.value;
+        });
+        if (subbtnEle.innerHTML == "提交") {
+          var user = {
+            username: username.value,
+            phone: phone.value,
+            age: age,
+            sex: sex, //1代表男2代表女
+            likes: likes,
+            address: {
+              province: address1.value,
+              city: address2.value,
+            },
+            avatar: imgSrc,
+            status: false,
+            star: false,
+          };
+          persons.push(user);
+        } else {
+          persons[editIndex] = {
+            username: username.value,
+            phone: phone.value,
+            age: age,
+            sex: sex, //1代表男2代表女
+            likes: likes,
+            address: {
+              province: address1.value,
+              city: address2.value,
+            },
+            avatar: imgSrc || persons[editIndex].avatar,
+            status: persons[editIndex].status,
+            star: persons[editIndex].star,
+          };
+          subbtnEle.innerHTML = "提交";
+          formEle.reset();
+        }
+
+        renderTableList();
+      }
+      //渲染表格列表
+      function renderTableList() {
+        //第一步定义字符串模版变量
+        var html = "";
+        persons.forEach((item, index) => {
+          html += `  <tr ${item.star ? "style='background:green;'" : ""}>
+                        <td><input data-index="${index}" type="checkbox" ${
+            item.status ? "checked" : ""
+          } /></td>
+                        <td><img class="avatar" src="${item.avatar}"></td>
+                        <td>${item.username}</td>
+                        <td>${item.phone}</td>
+                        <td>${item.age}</td>
+                        <td>${item.sex == 1 ? "男" : "女"}</td>
+                        <td>${item.likes.join()}</td>
+                        <td>${getAddressByCode(item.address)}</td>
+                        <td><button data-index="${index}">删除</button> <button data-index="${index}">修改</button> <button data-index="${index}">标星</button></td>
+                    </tr>`;
+        });
+        tbodyEle.innerHTML = html;
+        setLocalDataFun();
+      }
+      //写入本地存储
+      function setLocalDataFun() {
+        localStorage.setItem("persons", JSON.stringify(persons));
+      }
+      //获取本地的数据
+      function getLocalDataFun() {
+        if (localStorage.getItem("persons")) {
+          persons = JSON.parse(localStorage.getItem("persons"));
+        }
+      }
+      //通过区域编码获取地址信息
+      function getAddressByCode(params) {
+        var province = params.province;
+        var city = params.city;
+        var provinceIndex = address.findIndex((item) => item.code == province);
+        var cityIndex = address[provinceIndex].children.findIndex(
+          (item) => item.code == city
+        );
+        return (
+          address[provinceIndex].name +
+          "-" +
+          address[provinceIndex].children[cityIndex].name
+        );
+      }
+      function renderAddress() {
+        var html = `<option value="">请选择大区</option>`;
+        address.forEach((item, index) => {
+          html += ` <option value="${item.code}">${item.name}</option>`;
+        });
+        address1.innerHTML = html;
+      }
+      function fileUploadFun() {
+        var file = event.target.files[0];
+        var image = new FileReader();
+        image.addEventListener("load", function () {
+          var imgEle = document.createElement("img");
+          previewEle.style.backgroundImage = "url(" + image.result + ")";
+          imgSrc = image.result;
+        });
+        image.readAsDataURL(file);
+      }
+      //页面加载完毕后执行的函数
+      function initFun() {
+        formEle.addEventListener("submit", subFun);
+        //显示地址的联动
+        renderAddress();
+        //绑定第一下拉框的选择事件
+        address1.addEventListener("change", address1Fun);
+        //头像点击事件
+        previewEle.addEventListener("click", popSelectFun);
+        //绑定文件域的值改变事件
+        avatarEle.addEventListener("change", fileUploadFun);
+        //绑定tbody的点击事件
+        tbodyEle.addEventListener("click", tbodyClickFun);
+        //绑定全选事件
+        checkallEle.addEventListener("click", checkallFun);
+        //delsEle批量删除
+        delsEle.addEventListener("click", delsFun);
+        //starsEle
+        starsEle.addEventListener("click", starsFun);
+        //获取本地的数据
+        getLocalDataFun();
+        //渲染表格列表
+        renderTableList();
+        //检查是否全选
+        checkFun();
+      }
+      function starsFun() {
+        persons.forEach((item) => {
+          if (item.status) {
+            item.star = !item.star;
+          }
+        });
+        setLocalDataFun();
+        renderTableList();
+      }
+      function delsFun() {
+        persons = persons.filter((item) => !item.status);
+        setLocalDataFun();
+        renderTableList();
+        checkFun();
+      }
+      function checkFun() {
+        if (persons.length == 0) {
+          checkallEle.checked = false;
+        } else {
+          checkallEle.checked = persons.every((item) => item.status);
+        }
+      }
+      function checkallFun() {
+        console.log(this.checked);
+        persons.forEach((item) => {
+          item.status = this.checked;
+        });
+        setLocalDataFun();
+        renderTableList();
+      }
+      function tbodyClickFun() {
+        elementObj = event.target;
+        BtnIndex = elementObj.dataset.index;
+        if (elementObj.tagName == "BUTTON") {
+          if (elementObj.innerHTML == "删除") {
+            persons.splice(BtnIndex, 1);
+          }
+          if (elementObj.innerHTML == "标星") {
+            console.log(123);
+            persons[BtnIndex].star = !persons[BtnIndex].star;
+          }
+          if (elementObj.innerHTML == "修改") {
+            editIndex = BtnIndex;
+            subbtnEle.innerHTML = "保存";
+            //姓名回显
+            document.querySelector("#name").value = persons[BtnIndex].username;
+            //手机号
+            document.querySelector("#phone").value = persons[BtnIndex].phone;
+            //年领
+            document.querySelector("#age").value = persons[BtnIndex].age;
+            //性别回显
+            if (persons[BtnIndex].sex == 1) {
+              document.querySelector("#male").checked = true;
+            } else {
+              document.querySelector("#female").checked = true;
+            }
+            //爱好回显
+            var likes = document.querySelectorAll("[name='likes']");
+            likes.forEach((item) => {
+              if (persons[BtnIndex].likes.includes(item.value)) {
+                item.checked = true;
+              }
+            });
+            //地址回显
+            address1.value = persons[BtnIndex].address.province;
+            address1Fun.call(address1);
+            address2.value = persons[BtnIndex].address.city;
+            //头像
+            previewEle.style.backgroundImage = `url(${persons[BtnIndex].avatar})`;
+          }
+          setLocalDataFun();
+          renderTableList();
+        }
+        if (elementObj.tagName == "INPUT") {
+          persons[BtnIndex].status = elementObj.checked;
+          setLocalDataFun();
+          checkFun();
+        }
+      }
+      function popSelectFun() {
+        avatarEle.click();
+      }
+      function address1Fun() {
+        var html = `<option value="">请选择小区</option>`;
+        if (!this.value) {
+          address2.innerHTML = html;
+          return false;
+        }
+        var code = this.value;
+        var arr = address.find((item) => item.code == code).children;
+        var html = `<option value="">请选择小区</option>`;
+        arr.forEach((item, index) => {
+          html += `<option value="${item.code}">${item.name}</option>`;
+        });
+        address2.innerHTML = html;
+      }
+      window.addEventListener("load", initFun);
+    </script>
+  </body>
+</html>

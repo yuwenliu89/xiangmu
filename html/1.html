@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .box {
+        width: 500px;
+        height: 500px;
+        border: 1px solid black;
+        float: left;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box" id="wen">
+      <a href="购物车1.html">123</a>
+      <link rel="stylesheet" href="" />
+    </div>
+    <button>点击切换内容</button>
+
+    <script src="./jquery-3.7.0.min.js"></script>
+    <script>
+      $(function () {
+        $("button").click(fuc);
+      });
+      function fuc() {
+        // console.log(location.assign("购物车1.html"));
+        $("#wen").on("load", "购物车1.html");
+      }
+    </script>
+  </body>
+</html>

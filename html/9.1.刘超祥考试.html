@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      .new {
+        width: 1100px;
+        margin: auto;
+      }
+      table {
+        width: 1100px;
+        margin-top: 40px;
+      }
+      tbody button {
+        width: 60px;
+        height: 26px;
+        margin-top: 5px;
+        margin-bottom: 5px;
+      }
+      .box2 {
+        width: 500px;
+        height: 500px;
+        border: 1px solid black;
+        text-align: center;
+        position: absolute;
+        top: 100px;
+        left: 40%;
+        background-color: white;
+      }
+      .box2 p {
+        width: 100%;
+        height: 25px;
+        float: left;
+        text-align: left;
+      }
+      .box2 p span {
+        height: 25px;
+        border: 1px dashed black;
+      }
+      .ts {
+        width: 100%;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.5);
+        position: absolute;
+        top: 0px;
+        display: none;
+      }
+      .box2 {
+        width: 400px;
+        height: 380px;
+        border: 1px solid black;
+        margin: auto;
+      }
+      .box2 span {
+        width: 100%;
+        margin-top: 10px;
+        float: left;
+      }
+      .box2 span input {
+        width: 260px;
+        height: 30px;
+      }
+      .box2 span:nth-last-child(2) {
+        width: 350px;
+        margin-top: 45px;
+        float: left;
+      }
+      #que {
+        width: 100px;
+        height: 30px;
+        margin-top: 20px;
+        float: left;
+        margin-left: 10px;
+      }
+      #qu {
+        width: 100px;
+        height: 30px;
+        margin-top: 20px;
+        float: right;
+        margin-right: 10px;
+      }
+      #tian {
+        width: 100px;
+        height: 30px;
+        margin-right: 10px;
+        float: right;
+        margin-top: 20px;
+      }
+      .ta {
+        width: 100%;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.5);
+        position: absolute;
+        top: 0px;
+        display: none;
+      }
+      .box1 {
+        width: 400px;
+        height: 380px;
+        border: 1px solid black;
+        margin: auto;
+      }
+      .box1 span {
+        width: 100%;
+        margin-top: 10px;
+        float: left;
+      }
+      .box1 span input {
+        width: 260px;
+        height: 30px;
+      }
+      .box1 span:nth-last-child(2) {
+        width: 350px;
+        margin-top: 45px;
+        float: left;
+      }
+      .box1 {
+        width: 500px;
+        height: 500px;
+        border: 1px solid black;
+        text-align: center;
+        position: absolute;
+        top: 100px;
+        left: 40%;
+        background-color: white;
+      }
+      .box1 p {
+        width: 100%;
+        height: 25px;
+        float: left;
+        text-align: left;
+      }
+      .box1 p span {
+        height: 25px;
+        border: 1px dashed black;
+      }
+      .a {
+        width: 50%;
+        float: left;
+      }
+      .a input {
+        width: 260px;
+        height: 26px;
+        margin-top: 20px;
+        float: left;
+        text-indent: 1em;
+        font-size: 18px;
+      }
+      .a button {
+        width: 80px;
+        height: 28px;
+        margin-top: 20px;
+        margin-left: 10px;
+      }
+      #que1 {
+        width: 100px;
+        height: 30px;
+        margin-top: 20px;
+        float: left;
+        margin-left: 10px;
+      }
+      #qu1 {
+        width: 100px;
+        height: 30px;
+        margin-top: 20px;
+        float: right;
+        margin-right: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="new">
+      <table border="1px" cellspacing="0px">
+        <thead>
+          <tr>
+            <th>id</th>
+            <th>名字</th>
+            <th>数量</th>
+            <th>价格</th>
+            <th>已售</th>
+            <th>状态</th>
+            <th>照片</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+      <div class="a">
+        <input type="text" placeholder="请输入商品名字" id="zhi" />
+        <button id="sou">搜索</button>
+      </div>
+      <button id="tian">添加</button>
+    </div>
+    <div class="ts">
+      <div class="box2">
+        <span>姓名:<input type="text" id="name" /></span><br />
+        <span>数量:<input type="text" id="shu" /></span><br />
+        <span>价格:<input type="text" id="jia" /></span><br />
+        <span>已售:<input type="text" id="yi" /></span><br />
+        <span>状态:<input type="text" id="zhuang" /></span><br />
+        <span>照片:<input type="text" id="zhao" /></span><br />
+        <button id="que">确认添加</button>
+        <button id="qu">取消添加</button>
+      </div>
+    </div>
+    <div class="ta">
+      <div class="box1">
+        <span>姓名:<input type="text" /></span><br />
+        <span>数量:<input type="text" /></span><br />
+        <span>价格:<input type="text" /></span><br />
+        <span>已售:<input type="text" /></span><br />
+        <span>状态:<input type="text" /></span><br />
+        <span>照片:<input type="text" /></span><br />
+        <button id="que1">确认</button>
+        <button id="qu1">取消</button>
+      </div>
+    </div>
+    <script>
+      let arr = [];
+      let tbody = document.querySelector("tbody");
+      let tian = document.querySelector("#tian");
+      let ts = document.querySelector(".ts");
+      let name = document.getElementById("name");
+      let shu = document.getElementById("shu");
+      let jia = document.getElementById("jia");
+      let yi = document.getElementById("yi");
+      let zhuang = document.getElementById("zhuang");
+      let zhao = document.getElementById("zhao");
+      let ta = document.querySelector(".ta");
+      let sou = document.getElementById("sou");
+      let zhi = document.getElementById("zhi");
+      let que = document.getElementById("que");
+      let qu = document.getElementById("qu");
+      let que1 = document.getElementById("que1");
+      let qu1 = document.getElementById("qu1");
+      let inp = document.querySelectorAll(".box1 input");
+      let ids = null;
+      window.addEventListener("load", function () {
+        fun();
+        tian.addEventListener("click", tianJiao);
+        que.addEventListener("click", baoCun);
+        qu.addEventListener("click", quXiao);
+        tbody.addEventListener("click", shiJian);
+        sou.addEventListener("click", souSuo);
+        que1.addEventListener("click", fun1);
+        qu1.addEventListener("click", fun2);
+      });
+      // 隐藏div
+      function fun1() {
+        ta.style.display = "none";
+      }
+      // 隐藏div
+      function fun2() {
+        ta.style.display = "none";
+      }
+      // 搜索
+      function souSuo() {
+        if (zhi.value != "") {
+          let xml = new XMLHttpRequest();
+          let data = {
+            goods_name: zhi.value,
+          };
+          xml.open("POST", "https://liu.zzgoodqc.cn/goodsx/search", true);
+          xml.setRequestHeader("Content-Type", "application/json");
+          data = JSON.stringify(data);
+          xml.send(data);
+          xml.onload = function () {
+            console.log(xml);
+            let obj = JSON.parse(xml.responseText);
+            inp[0].value = obj.data[0].goods_name;
+            inp[1].value = obj.data[0].stock;
+            inp[2].value = obj.data[0].price;
+            inp[3].value = obj.data[0].sold;
+            inp[4].value = obj.data[0].status;
+            inp[5].value = obj.data[0].img;
+            ta.style.display = "block";
+            zhi.value = "";
+          };
+        } else {
+          alert("请输入正确的商品名字");
+        }
+      }
+      // tbody 点击事件
+      function shiJian() {
+        let an = event.target;
+        if (an.tagName == "BUTTON") {
+          if (an.innerHTML == "删除") {
+            if (confirm("您确定删除吗？")) {
+              shanChu();
+            }
+          }
+          if (an.innerHTML == "编辑") {
+            let id = event.target.dataset.id;
+            let index = event.target.dataset.index;
+            name.value = arr.data[index].goods_name;
+            shu.value = arr.data[index].stock;
+            jia.value = arr.data[index].price;
+            yi.value = arr.data[index].sold;
+            zhuang.value = arr.data[index].status;
+            zhao.value = arr.data[index].img;
+            ts.style.display = "block";
+            que.innerHTML = "确认更改";
+            ids = id;
+          }
+          if (an.innerHTML == "查看") {
+            ta.style.display = "block";
+            let id = event.target.dataset.id;
+            let index = event.target.dataset.index;
+            inp[0].value = arr.data[index].goods_name;
+            inp[1].value = arr.data[index].stock;
+            inp[2].value = arr.data[index].price;
+            inp[3].value = arr.data[index].sold;
+            inp[4].value = arr.data[index].status;
+            inp[5].value = arr.data[index].img;
+          }
+        }
+      }
+      // 更改后添加
+      function bianJi() {
+        let data = {
+          id: ids,
+          goods_name: name.value,
+          stock: shu.value,
+          price: jia.value,
+          sold: yi.value,
+          status: zhuang.value,
+          img: zhao.value,
+        };
+        let xml = new XMLHttpRequest();
+        xml.open("POST", "https://liu.zzgoodqc.cn/goodsx/update/", true);
+        xml.setRequestHeader("Content-Type", "application/json");
+        data = JSON.stringify(data);
+        xml.send(data);
+        xml.onload = function () {
+          console.log(xml);
+          fun();
+        };
+      }
+      // 查看
+      function shanChu() {
+        let id = event.target.dataset.id;
+        let xml = new XMLHttpRequest();
+        xml.open(
+          "get",
+          `https://liu.zzgoodqc.cn/goodsx/delete/?id=${id}`,
+          true
+        );
+        xml.send();
+        xml.onload = function () {
+          fun();
+        };
+        xml.onerror = function (error) {
+          console.log(error);
+        };
+      }
+      // 点击添加弹出div，然后隐藏
+      function quXiao() {
+        ts.style.display = "none";
+      }
+      // 添加
+      function baoCun() {
+        if (que.innerHTML == "确认添加") {
+          let data = {
+            goods_name: name.value,
+            stock: shu.value,
+            price: jia.value,
+            sold: yi.value,
+            status: zhuang.value,
+            img: zhao.value,
+          };
+          let xml = new XMLHttpRequest();
+          xml.open("POST", "https://liu.zzgoodqc.cn/goodsx/add", true);
+          xml.setRequestHeader("Content-Type", "application/json");
+          data = JSON.stringify(data);
+          xml.send(data);
+          xml.onload = function () {
+            fun();
+            ts.style.display = "none";
+          };
+        } else {
+          bianJi();
+          quXiao();
+        }
+      }
+      // 点击添加弹出div，然后隐藏
+      function tianJiao() {
+        ts.style.display = "block";
+      }
+      // 渲染页面
+      function fun() {
+        let xml = new XMLHttpRequest();
+        xml.open("get", `https://liu.zzgoodqc.cn/goodsx/goodslist`);
+        xml.send();
+        xml.onload = function () {
+          let obj = JSON.parse(xml.responseText);
+          let str = ``;
+          arr = obj;
+          arr.data.forEach((item, index) => {
+            str += `
+                          <tr>
+                          <th>${item.id}</th>
+                          <th>${item.goods_name}</th>
+                          <th>${item.stock}</th>
+                          <th>${item.price}</th>
+                          <th>${item.sold}</th>
+                          <th>${item.status}</th>
+                          <th>${item.img}</th>
+                          <th><button data-id="${item.id}" data-index="${index}">编辑</button>
+                            <button  data-id="${item.id}">删除</button>
+                            <button  data-index="${index}"data-id="${item.id}">查看</button></th>
+                          </tr>
+                  `;
+          });
+          tbody.innerHTML = str;
+        };
+      }
+    </script>
+  </body>
+</html>
